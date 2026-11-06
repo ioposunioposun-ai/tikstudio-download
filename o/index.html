@@ -34,6 +34,11 @@
     var ports = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010];
     ports.forEach(function (pt) { var u = 'http://127.0.0.1:' + pt; alive(u).then(function (ok) { if (ok) open(u); }); });
   }
+  // the donate page (p=d): people see a message instead of a blank page while the streamer's program is closed
+  if (p === 'd' || p.indexOf('d?') === 0) {
+    document.body.style.cssText = 'margin:0;background:#0b0a12;color:#fff;font-family:Prompt,Kanit,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center';
+    setTimeout(function () { if (done) return; document.body.innerHTML = '<div style="padding:30px"><div style="font-size:54px">💸</div><h2 style="margin:10px 0">กำลังเปิดหน้าโดเนท...</h2><p style="color:#b9b2cc;line-height:1.7">ถ้าหน้าไม่ขึ้น แปลว่าสตรีมเมอร์ยังไม่ได้เปิดรับโดเนทตอนนี้<br>หน้านี้จะเปิดให้เองเมื่อพร้อม — ไม่ต้องรีเฟรช</p></div>'; }, 5000);
+  }
   local();
   fast();
   go();
