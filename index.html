@@ -64,11 +64,31 @@ footer{color:var(--mute);text-align:center;padding:40px 0 50px;font-size:14px}
 .rev{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rev.on{opacity:1;transform:none}
 @media (max-width:900px){.hero{grid-template-columns:1fr;padding-top:20px}.shot-hero{transform:none}.gal{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}nav a.nl{display:none}}
 @media (max-width:560px){.gal,.steps{grid-template-columns:1fr}.btn{width:100%;justify-content:center}}
+
+/* ✨ 2026 refresh: purple King Studio logo stage · stats · Minecraft maps */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(168,85,247,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.07) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%)}
+.stage{position:relative;padding-top:40px}
+.stage .ring{position:absolute;right:-30px;top:-70px;width:300px;height:300px;border-radius:50%;background:conic-gradient(from 0deg,#a855f7,#ec4899,#22d3ee,#a855f7);filter:blur(42px);opacity:.55;animation:ringSpin 9s linear infinite;z-index:0}
+.stage .klogo{position:absolute;right:-24px;top:-82px;width:290px;z-index:3;filter:drop-shadow(0 0 28px rgba(168,85,247,.85)) drop-shadow(0 10px 30px rgba(0,0,0,.6));animation:floatY 5s ease-in-out infinite}
+.stage .shot-hero,.stage .shot{position:relative;z-index:2}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:6px 0 10px}
+.stats div{background:linear-gradient(135deg,rgba(168,85,247,.16),rgba(236,72,153,.08));border:1px solid rgba(168,85,247,.32);border-radius:20px;padding:18px 16px;text-align:center}
+.stats b{display:block;font-family:Kanit;font-size:34px;line-height:1.1;background:linear-gradient(90deg,#c084fc,#f472b6,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats span{color:var(--mute,#a9a3c4);font-size:14px}
+.maps{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.map{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#0d0b16;transition:transform .2s,box-shadow .2s}
+.map:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 16px 40px rgba(168,85,247,.35)}
+.map img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.map b{position:absolute;left:10px;bottom:10px;padding:5px 12px;border-radius:999px;background:rgba(7,6,13,.82);backdrop-filter:blur(6px);font-family:Kanit;font-size:15px}
+.map i{position:absolute;right:10px;top:10px;font-style:normal;font-size:12px;padding:3px 9px;border-radius:999px;background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}.stage .klogo{width:180px;right:-6px;top:-50px}.stage .ring{width:200px;height:200px;right:0;top:-40px}}
 </style></head>
 <body>
 <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
 <div class="wrap">
-  <nav><img src="img/logo.png" alt=""><b>Tikstudio</b><span class="sp"></span><a class="nl" href="#features">ความสามารถ</a><a class="nl" href="#shots">ตัวอย่าง</a><a class="nl" href="#how">วิธีติดตั้ง</a><a class="nl" href="#faq">คำถาม</a></nav>
+  <nav><img src="img/logo.png" alt=""><b>Tikstudio</b><span class="sp"></span><a class="nl" href="#features">ความสามารถ</a><a class="nl" href="#maps">แมพ</a><a class="nl" href="#shots">ตัวอย่าง</a><a class="nl" href="#how">วิธีติดตั้ง</a><a class="nl" href="#faq">คำถาม</a></nav>
   <div class="hero">
     <div>
       <span class="tag"><i></i> <span id="tagTxt">ดาวน์โหลดฟรี · เวอร์ชันล่าสุด</span></span>
@@ -80,14 +100,18 @@ footer{color:var(--mute);text-align:center;padding:40px 0 50px;font-size:14px}
       </div>
       <div class="meta"><span>🆓 <b>ฟรี</b></span><span>🪟 <b>Windows</b></span><span>⚡ <b>อัปเดตในโปรแกรม</b> กดปุ่มเดียว</span><span id="verMeta"></span></div>
     </div>
-    <div class="shot-hero rev"><div class="bar"><i></i><i></i><i></i></div><img id="heroImg" src="img/home.jpg" alt="Tikstudio"></div>
+    <div class="stage rev"><div class="ring"></div><img class="klogo" src="img/logo-big.png" alt="King Studio"><div class="shot-hero"><div class="bar"><i></i><i></i><i></i></div><img id="heroImg" src="img/home.jpg" alt="Tikstudio"></div></div>
   </div>
+
+  <div class="stats rev"><div><b>14+</b><span>แมพมายคราฟ</span></div><div><b>200+</b><span>ของขวัญ TikTok พร้อมรูป</span></div><div><b>30+</b><span>โอเวอร์เลย์ใส่ TikTok LIVE Studio</span></div><div><b>1 คลิก</b><span>อัปเดตในโปรแกรม</span></div></div>
 
   <section id="features" class="rev">
     <h2>ทำอะไรได้บ้าง</h2>
     <p class="sub">ต่อไลฟ์ TikTok แล้วให้ของขวัญ ใจ คอมเมนต์ ทำงานเอง — เสียง รูป เกม มายคราฟ นับวิน โดเนท ครบ</p>
     <div class="feat" id="feat"></div>
   </section>
+
+  <section id="maps" class="rev"><h2>แมพมายคราฟให้คนดูเล่นด้วยของขวัญ</h2><p class="sub">เลือกแมพ กดรันเซิร์ฟในโปรแกรม แล้วให้ของขวัญ ใจ คอมเมนต์ ไปสั่งในเกมได้ทันที — มีพรีเซ็ตพร้อมใช้ทุกแมพ</p><div class="maps"><div class="map"><img loading="lazy" src="img/maps/tikbuild.jpg" alt="ต่อบล็อก"><b>⛏️ ต่อบล็อก</b></div><div class="map"><img loading="lazy" src="img/maps/diamond.jpg" alt="หาเพชร"><b>⛏️ หาเพชร</b></div><div class="map"><img loading="lazy" src="img/maps/sand.jpg" alt="ขุดทราย"><b>⛏️ ขุดทราย</b></div><div class="map"><img loading="lazy" src="img/maps/pig.jpg" alt="จับหมู"><b>⛏️ จับหมู</b></div><div class="map"><img loading="lazy" src="img/maps/farm.jpg" alt="ปลูกผัก"><b>⛏️ ปลูกผัก</b></div><div class="map"><img loading="lazy" src="img/maps/buildmob.jpg" alt="ต่อตีม็อบ"><b>⛏️ ต่อตีม็อบ</b></div><div class="map"><img loading="lazy" src="img/maps/rail.jpg" alt="รถราง"><b>⛏️ รถราง</b><i>ใหม่</i></div><div class="map"><img loading="lazy" src="img/maps/paint.jpg" alt="ปาสี"><b>⛏️ ปาสี</b><i>ใหม่</i></div><div class="map"><img loading="lazy" src="img/maps/tower.jpg" alt="ต่อตึก"><b>⛏️ ต่อตึก</b></div><div class="map"><img loading="lazy" src="img/maps/carrun.jpg" alt="หนีรถ"><b>⛏️ หนีรถ</b></div><div class="map"><img loading="lazy" src="img/maps/jump.jpg" alt="กระโดด"><b>⛏️ กระโดด</b></div><div class="map"><img loading="lazy" src="img/maps/parkour.jpg" alt="ปากัว"><b>⛏️ ปากัว</b></div><div class="map"><img loading="lazy" src="img/maps/tree.jpg" alt="ตัดต้นไม้"><b>⛏️ ตัดต้นไม้</b></div><div class="map"><img loading="lazy" src="img/maps/survival.jpg" alt="หาเพชรเอาชีวิตรอด"><b>⛏️ หาเพชรเอาชีวิตรอด</b></div></div></section>
 
   <section id="shots" class="rev">
     <h2>ตัวอย่างโปรแกรม</h2>
@@ -135,7 +159,7 @@ if (C.discord) { $('#discord').hidden = false; $('#discord').href = C.discord; }
 $('#yr').textContent = new Date().getFullYear();
 const FEAT = C.features.length ? C.features : [
   ['🎁', 'แอคชั่นจากไลฟ์', 'ของขวัญ ใจ ติดตาม แชร์ คอมเมนต์ → เล่นเสียง ขึ้นรูป/วิดีโอ กดปุ่มคีย์บอร์ด ได้เอง'],
-  ['⛏️', 'แมพมายคราฟ', 'ต่อบล็อก หาเพชร ขุดทราย ต่อตึก หนีรถ และอีกเพียบ — เปิดเซิร์ฟในโปรแกรม คนดูส่งของขวัญแล้วในเกมเปลี่ยน'],
+  ['⛏️', 'แมพมายคราฟ 14+ แมพ', 'ต่อบล็อก หาเพชร ต่อตึก หนีรถ รถราง ปาสี และอีกเพียบ — เปิดเซิร์ฟในโปรแกรม คนดูส่งของขวัญแล้วในเกมเปลี่ยน'],
   ['🎮', 'เกมในตัว', 'SkyBlock, ยิงซอมบี้, ขัดกำแพง 3D — ใส่ใน TikTok LIVE Studio ได้'],
   ['🏆', 'นับวิน / สุ่มวิน / จับเวลา', 'หลายแบบ ปรับฟอนต์ สี ขนาด ใส่คำว่า WIN ด้านหลัง กล่องนับวิน'],
   ['💸', 'รับโดเนท', 'หน้าเว็บโดเนทของตัวเอง สแกนสลิปอัตโนมัติ แจ้งเตือนขึ้นจอสวยๆ สิริอ่านข้อความ'],
@@ -144,7 +168,7 @@ const FEAT = C.features.length ? C.features : [
   ['🔗', 'ลิงก์ถาวร', 'ใส่ใน TikTok LIVE Studio ครั้งเดียว ใช้ได้ตลอด ไม่ต้องเปลี่ยนลิงก์'],
 ];
 $('#feat').innerHTML = FEAT.map(f => `<div class="f"><div class="ic">${esc(f[0])}</div><b>${esc(f[1])}</b><p>${esc(f[2])}</p></div>`).join('');
-const SHOTS = C.shots.length ? C.shots : [['img/home.jpg', 'หน้าแรก'], ['img/actions.jpg', 'อีเว้นท์แอคชั่น'], ['img/minecraft.jpg', 'แมพมายคราฟ'], ['img/special.jpg', 'โอเวอร์เลย์พิเศษ'], ['img/win.jpg', 'นับวิน'], ['img/games.jpg', 'เกม'], ['img/cleanwall.jpg', 'เกมขัดกำแพง 3D'], ['img/zombie.jpg', 'เกมยิงซอมบี้'], ['img/donate.jpg', 'แจ้งเตือนโดเนท']];
+const SHOTS = C.shots.length ? C.shots : [['img/home.jpg', 'หน้าแรก'], ['img/presets.jpg', 'พรีเซ็ตทุกแมพ'], ['img/minecraft.jpg', 'แมพมายคราฟ'], ['img/actions.jpg', 'อีเว้นท์แอคชั่น'], ['img/special.jpg', 'โอเวอร์เลย์พิเศษ'], ['img/win.jpg', 'นับวิน'], ['img/games.jpg', 'เกม'], ['img/editor.jpg', 'ตัดต่อรูป'], ['img/sounds.jpg', 'เสียง'], ['img/cleanwall.jpg', 'เกมขัดกำแพง 3D'], ['img/zombie.jpg', 'เกมยิงซอมบี้'], ['img/donate.jpg', 'แจ้งเตือนโดเนท']];
 $('#gal').innerHTML = SHOTS.map(s => `<div class="g" data-src="${esc(s[0])}"><img loading="lazy" src="${esc(s[0])}" alt="${esc(s[1])}"><span>${esc(s[1])}</span></div>`).join('');
 const FAQ = C.faq.length ? C.faq : [
   ['ดาวน์โหลดฟรีจริงไหม?', 'ดาวน์โหลดฟรี ใช้งานต้องมีรหัสเข้าใช้ 6 หลัก (1 รหัส ใช้ได้คอมเครื่องเดียว) ติดต่อ King Studio'],
