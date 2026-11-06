@@ -122,9 +122,9 @@ footer{color:var(--mute);text-align:center;padding:40px 0 50px;font-size:14px}
 <script>
 const C = Object.assign({
   title: '', lead: 'Tikstudio โปรแกรมสำหรับสตรีมเมอร์ TikTok — ของขวัญ ใจ ติดตาม คอมเมนต์ เปิดเสียง ขึ้นรูป กดปุ่ม เล่นเกม คุมแมพมายคราฟ นับวิน รับโดเนท และอัดคลิป ทั้งหมดในโปรแกรมเดียว',
-  link: '', owner: 'plasticboxplasticbox-stack', repo: 'tikstudio-update', discord: '',
+  link: '', owner: 'ioposunioposun-ai', repo: 'tikstudio-update', discord: '',
   features: [], shots: [], faq: [],
-}, {"link":"","discord":""} || {});
+}, {"link":"","discord":"","owner":"ioposunioposun-ai","repo":"tikstudio-update"} || {});
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const LINK = C.link || `https://github.com/${C.owner}/${C.repo}/releases/latest/download/Tikstudio.exe`;
@@ -161,9 +161,14 @@ $('#lb').onclick = () => $('#lb').classList.remove('on');
 const io = new IntersectionObserver((es) => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); } }), { threshold: .12 });
 document.querySelectorAll('.rev').forEach(el => io.observe(el));
 // เวอร์ชันล่าสุด (จาก GitHub)
-fetch(`https://api.github.com/repos/${C.owner}/${C.repo}/releases?per_page=10`).then(r => r.ok ? r.json() : null).then(list => {
-  const j = Array.isArray(list) ? list.find(x => !x.draft && (x.assets || []).some(a => a.name === 'Tikstudio.exe')) : null;
-  if (!j) return;
+fetch(`https://api.github.com/repos/${C.owner}/${C.repo}/releases?per_page=30`).then(r => r.status === 404 ? [] : r.ok ? r.json() : null).then(list => {
+  if (!Array.isArray(list)) return;   // GitHub busy → keep the normal link
+  const j = list.find(x => !x.draft && (x.assets || []).some(a => a.name === 'Tikstudio.exe'));
+  if (!j) {   // nothing uploaded yet → never send people to a GitHub 404 page
+    if (!C.link) for (const b of [$('#dlBtn'), $('#dlBtn2')]) { b.removeAttribute('href'); b.style.opacity = '.55'; b.style.cursor = 'not-allowed'; b.onclick = (e) => { e.preventDefault(); $('#dlInfo').textContent = 'ยังไม่มีไฟล์โปรแกรมให้โหลด — แจ้ง King Studio ได้เลย'; }; }
+    $('#dlInfo').textContent = 'ยังไม่มีไฟล์โปรแกรมให้โหลด — กำลังเตรียม';
+    return;
+  }
   if (!C.link) { const a0 = j.assets.find(a => a.name === 'Tikstudio.exe'); for (const b of [$('#dlBtn'), $('#dlBtn2')]) b.href = a0.browser_download_url; }
   const v = String(j.tag_name || '').replace(/^v/, ''), a = (j.assets || []).find(x => x.name === 'Tikstudio.exe');
   const d = j.published_at ? new Date(j.published_at).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
